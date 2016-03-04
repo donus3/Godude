@@ -146,6 +146,7 @@
 
                 <!-- portfolio items start -->
                 <div class="isotope-container row grid-space-20"> <!-- For 1 container size 20 -->
+                          <br><br><br><br><br>
                     <?php
                     $count = 0;
                     $controller = new Controller;
@@ -154,24 +155,25 @@
                     $arr = json_decode($allTopic);
                     if (is_array($arr) || is_object($arr))
                     {
-                        foreach ($arr as $topic) {
+                        foreach ($arr as $eachTopic) {
+                          $topic = json_decode($eachTopic,true);
                           ?>
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-                                        <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo $topic[1] ?>"
+                                        <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo $topic['images'] ?>"
                                              alt=""> <!-- Image here -->
                                         <a href="getTopic.php?id=<?php echo $count; ?>" class="overlay"
                                            data-target="#project-5">
                                             <!-- onclick image will show overlay on image -->
                                             <i class="fa fa-search-plus fa-4x"></i>
-                                            <span><?php echo $topic[3] ?></span> <!-- message in span! -->
+                                            <span><?php echo $topic['timestamp'] ?></span> <!-- message in span! -->
                                         </a>
                                     </div>
                                     <!-- call something from ... -->
                                     <a href="getReview.php?id=<?php echo $count; ?>" class="btn btn-default btn-block"
                                        data-target="getReview.php">
-                                        <?php echo $topic[2] ?>
+                                        <?php echo $topic['topic'] ?>
                                     </a>
                                 </div>
                             </div>
