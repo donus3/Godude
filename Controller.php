@@ -3,6 +3,10 @@
 	include 'WeatherModel.php';
 	Class Controller{
 
+		if(isset($_POST['submit'])){
+			insertReview();
+		}
+
 		public function getReview($id){
 			$models = new ReviewModel;
 			$topics = $models->getAllReview();
@@ -100,15 +104,13 @@
 
 		public function insertReview(){
 			$models = new ReviewModel;
-			if ($_POST != null) {
-			  $image = $_POST["image"];
-			  $topic = $_POST["topic"];
-			  $detail = $_POST["detail"];
-			  $tag = $_POST["tag"];
-			  $lat = $_POST["lat"];
-			  $long = $_POST["long"];
+			  $image = $_POST['image'];
+			  $topic = $_POST['topic'];
+			  $detail = $_POST['detail'];
+			  $tag = $_POST['tag'];
+			  $lat = $_POST['lat'];
+			  $long = $_POST['long'];
 			  $models->insertDB($image,$topic,$detail,$tag,$lat,$long);
-			}
 		}
 	}
 ?>
