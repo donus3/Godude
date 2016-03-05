@@ -150,7 +150,7 @@
                     <?php
                     $count = 0;
                     $controller = new Controller;
-                    $weather = $controller->getWeater();
+                    //$weather = $controller->getWeater();
                     $allTopic = $controller->getTopic();
                     $arr = json_decode($allTopic);
                     if (is_array($arr) || is_object($arr))

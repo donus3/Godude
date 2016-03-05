@@ -1,11 +1,11 @@
 <?php
 	include 'ReviewModel.php';
 	include 'WeatherModel.php';
+	if(isset($_POST['submit'])){
+			$con = new Controller;
+			$con->insertReview();
+	}
 	Class Controller{
-
-		if(isset($_POST['submit'])){
-			insertReview();
-		}
 
 		public function getReview($id){
 			$models = new ReviewModel;
