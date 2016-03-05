@@ -40,7 +40,7 @@
 
 		public function getWeather($la,$lo,$tag){
 			$weatherModel = new WeatherModel;
-			$json = file_get_contents('https://ad46647d-1b77-4644-b8c6-78eed562b7a3:NAgf7Zkmlo@twcservice.au-syd.mybluemix.net:443/api/weather/v2/forecast/daily/10day?units=m&geocode=45.42%2C75.69&language=en-US');
+			$json = file_get_contents('https://ad46647d-1b77-4644-b8c6-78eed562b7a3:NAgf7Zkmlo@twcservice.au-syd.mybluemix.net:443/api/weather/v2/forecast/daily/10day?units=m&geocode='.$la.','.$lo.'&language=en-US');
 			$obj = json_decode($json);
 			$rain_day = array();
 			$rain_night = array();
