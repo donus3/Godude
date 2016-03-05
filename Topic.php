@@ -111,7 +111,7 @@
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
-                                        <li class="active"><a href="TestAll.php">Review</a></li>
+                                        <li class="active"><a href="Topic.php">Review</a></li>
                                     </ul>
                                 </div>
 
