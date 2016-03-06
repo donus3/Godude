@@ -1,13 +1,9 @@
-
 <!DOCTYPE html>
-
 <?php
-include 'Controller.php';
-$con = new Controller;
-$s = $con->getTopic();
-$arr = json_decode($s, true);
-$id = $_GET['id'];
-$topic = $arr[$id];
+    include 'Controller.php';
+    $controller = new Controller;
+    $id = $_GET['id'];
+    $review = $controller->getReview($id);
 ?>
 <!--[if IE 9]>
 <html lang="en" class="ie9"> <![endif]-->
@@ -16,7 +12,7 @@ $topic = $arr[$id];
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title><?php echo $topic[2]; ?></title>
+    <title><?php echo $review['topic']; ?></title>
 
     <meta name="description" content="Worthy a Bootstrap-based, Responsive HTML5 Template">
     <meta name="author" content="htmlcoder.me">
@@ -85,22 +81,15 @@ $topic = $arr[$id];
 
 <body class="no-trans">
 <!-- scrollToTop -->
-<!-- ================ -->
 <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
-
 <!-- header start -->
-<!-- ================ -->
 <header class="header fixed clearfix navbar navbar-fixed-top">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-
                 <!-- header-left start -->
-                <!-- ================ -->
                 <div class="header-left clearfix">
-
                     <!-- logo -->
-
                     <div class="logo smooth-scroll">
                         <a href="index.html"><img id="logo" src="images/favicon.ico" alt="Worthy"></a>
                     </div>
@@ -147,7 +136,7 @@ $topic = $arr[$id];
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
-                                        <li><a href="TestAll.php">Review</a></li>
+                                        <li><a href="Topic.php">Review</a></li>
                                     </ul>
                                 </div>
 
@@ -166,10 +155,7 @@ $topic = $arr[$id];
     </div>
 </header>
 <!-- header end -->
-
-
 <div class="container-fluid bg-image-1 ">
-
     <!-------------- Show Image -------------->
     <div class="row">
         <div id="" class="col-md-6 col-md-offset-3">
@@ -177,9 +163,8 @@ $topic = $arr[$id];
             for($x=0;$x<6;$x++)
                 echo '<br>';
             ?>
-            <img id="" src="<?php echo $topic[1] ?>" class="img-thumbnail" width="600" height="800">
+            <img id="" src="<?php echo '/images/'.$review['image'] ?>" class="img-thumbnail" width="600" height="800">
         </div>
-
         <!--------------- Show Weather -------------->
         <div class="col-md-3">
             <img class="whether" src="images/cloud.png">
@@ -187,26 +172,14 @@ $topic = $arr[$id];
             <h2> 28 C</h2>
         </div>
     </div>
-
-
     <!---------------- Content ------------------>
     <div class="row">
         <div class="col-md-10 col-lg-offset-1 " style="background-color:#777;">
             <?php
             for($x=0;$x<4;$x++)
                 echo '<br>';
-            ?>
-
-
-            <?php
-            //<----------------********************
-            //<----------------********************
-
-            echo "<h1 class='text-center'>$topic[2]</h1>";
-
-            for($x=0;$x<20;$x++)
-            echo "$topic[4] <br>";
-
+            echo "<h1 class='text-center'>".$review['topic']."</h1>";
+            echo $review['detail']."<br>";
             ?><br>
 
         </div>
@@ -214,7 +187,6 @@ $topic = $arr[$id];
     <br><br>
 </div>
 <!-- JavaScript files placed at the end of the document so the pages load faster
-		================================================== -->
 <!-- Jquery and Bootstap core js files -->
 <script type="text/javascript" src="plugins/jquery.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>

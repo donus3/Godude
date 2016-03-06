@@ -111,7 +111,8 @@
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
-                                        <li class="active"><a href="TestAll.php">Review</a></li>
+                                        <li class="active"><a href="Topic.php">Review</a></li>
+                                        <li><a href="PostReview.php">Add Review</a></li>
                                     </ul>
                                 </div>
 
@@ -146,32 +147,34 @@
 
                 <!-- portfolio items start -->
                 <div class="isotope-container row grid-space-20"> <!-- For 1 container size 20 -->
+                          <br><br><br><br><br>
                     <?php
                     $count = 0;
                     $controller = new Controller;
-                    $weather = $controller->getWeater();
+                    //$weather = $controller->getWeater();
                     $allTopic = $controller->getTopic();
                     $arr = json_decode($allTopic);
                     if (is_array($arr) || is_object($arr))
                     {
-                        foreach ($arr as $topic) {
+                        foreach ($arr as $eachTopic) {
+                          $topic = json_decode($eachTopic,true);
                           ?>
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-                                        <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo $topic[1] ?>"
+                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"
                                              alt=""> <!-- Image here -->
-                                        <a href="getTopic.php?id=<?php echo $count; ?>" class="overlay"
+                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"
                                            data-target="#project-5">
                                             <!-- onclick image will show overlay on image -->
                                             <i class="fa fa-search-plus fa-4x"></i>
-                                            <span><?php echo $topic[3] ?></span> <!-- message in span! -->
+                                            <span><?php echo $topic['timestamp'] ?></span> <!-- message in span! -->
                                         </a>
                                     </div>
                                     <!-- call something from ... -->
-                                    <a href="getReview.php?id=<?php echo $count; ?>" class="btn btn-default btn-block"
+                                    <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
                                        data-target="getReview.php">
-                                        <?php echo $topic[2] ?>
+                                        <?php echo $topic['topic'] ?>
                                     </a>
                                 </div>
                             </div>
@@ -179,14 +182,12 @@
                             $count = $count + 1;
                         }
                     }
+
                 ?>
 
-                    <div class="col-sm-6 col-md-3 isotope-item app-development">
-
-                        <i id="add" class="fa fa-plus-circle fa-5x"></i>
-
-
-                    </div>
+<!--                    <div class="col-sm-6 col-md-3 isotope-item app-development">-->
+<!--                        <i id="add" class="fa fa-plus-circle fa-5x"></i>-->
+<!--                    </div>-->
                 </div>
 
 
