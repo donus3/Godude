@@ -146,7 +146,7 @@
 			        echo "Sorry, there was an error uploading your file.";
 			    }
 			}
-			  $image = $_POST['image'];
+			  $image = $_FILES["image"]["name"];
 			  $topic = $_POST['topic'];
 			  $detail = $_POST['detail'];
 			  $tag = $_POST['tag'];
