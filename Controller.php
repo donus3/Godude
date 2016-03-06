@@ -160,7 +160,7 @@
 			  }
 			  else{
 			  	echo "Submit error pls try again";
-			  	echo '<a href="Topic.php"> <button> try again </button> </a>';
+			  	echo '<a href="PostReview.php"> <button> try again </button> </a>';
 			  }
 		}
 	}
