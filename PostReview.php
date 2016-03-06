@@ -185,12 +185,10 @@
 
 
                         <td><select name="tag" required="true" onchange="this.form.submit()">
-                              <option value="Thailand">Thailand</option>
-                              <option value="Europe">Europe</option>
-                              <option value="US">US</option>
-                              <option value="Africa">Africa</option>
-                              <option value="Australia">Australia</option>
-                              <option value="Asia">Asia</option>                        
+                              <option value="town" style="color:black;" selected="selected">Town</option>
+                              <option value="forest" style="color:black;">Forest</option>
+                              <option value="mountian" style="color:black;">Mountian</option>
+                              <option value="sea" style="color:black;">Sea</option>                        
                         </select></td>
                   </tr>
                   <td colspan="2" align="center" >
