@@ -162,15 +162,9 @@
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-<<<<<<< HEAD
-                                        <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo '/images/'.$topic['images'] ?>"
-                                             alt=""> <!-- Image here -->
-                                        <a href="getReview.php?id=<?php echo $topic['id'] ?>" class="overlay"
-=======
                                         <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"
                                              alt=""> <!-- Image here -->
                                         <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"
->>>>>>> refs/heads/pr/5
                                            data-target="#project-5">
                                             <!-- onclick image will show overlay on image -->
                                             <i class="fa fa-search-plus fa-4x"></i>
