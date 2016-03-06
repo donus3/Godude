@@ -5,8 +5,6 @@
 <html lang="en">
 <!--<![endif]-->
       <head>
-            <?php include 'Controller.php'; ?>
-
       </head>
       <body> 
             <br>
@@ -38,7 +36,7 @@
                         <td><input type="text" name="tag" size="52"></td>
                   </tr>
                   <td colspan="2" align="center" >
-                        <button  type="submit" form="form1" name="Submit" value="submit" style="color:black;">Submit</button>
+                        <button  type="submit" form="form1" name="submit" style="color:black;">Submit</button>
                   </td>
                   </form>
             </table>  

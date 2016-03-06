@@ -104,7 +104,7 @@
 
 		public function insertReview(){
 			$models = new ReviewModel;
-			$target_dir = "/images/";
+			$target_dir = "images/";
 			$target_file = $target_dir . basename($_FILES["image"]["name"]);
 			$uploadOk = 1;
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -152,7 +152,16 @@
 			  $tag = $_POST['tag'];
 			  $lat = $_POST['lat'];
 			  $long = $_POST['long'];
-			  $models->insertDB($image,$topic,$detail,$tag,$lat,$long);
+			  $succ = $models->insertDB($image,$topic,$detail,$tag,$lat,$long);
+			  $succ = json_decode($succ);
+			  if($succ->{'ok'} == 'true'){
+			  	header( "location: Topic.php" );
+ 				exit(0);
+			  }
+			  else{
+			  	echo "Submit error pls try again";
+			  	echo '<a href="Topic.php"> <button> try again </button> </a>';
+			  }
 		}
 	}
 ?>
