@@ -49,7 +49,6 @@
 			$s = 0;
 			$c = 0;
 			$t = 0;
-			$sn = 0;
 			$cn = 0;
 			$tn = 0;
 			// count stat of forcast each day
@@ -69,9 +68,7 @@
 					}
 				 }
 				 if($night != NULL){
-					 if(strpos($night->{'shortcast'}, 'sun' ) !== false)
-					 		$sn++;
-					 else if(strpos($night->{'shortcast'}, 'thunderstorm' ) !== false){
+					if(strpos($night->{'shortcast'}, 'thunderstorm' ) !== false || strpos($night->{'shortcast'}, 'rain' ) !== false){
 						 //add date
 						 	array_push($rain_night,$night->{'fcst_valid_local'});
 					 		$tn++;
@@ -87,17 +84,16 @@
 			foreach ($rain_day as $value) {
 				$rain_day_print = $rain_day_print . " " . $value;
 			}
-			array_push($result,'{"period":"day","percent"'. $s .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","sun").'"}');
-			array_push($result,'{"period":"day","percent"'. $c .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","clear").'"}');
-			array_push($result,'{"period":"day","percent"'. $t .',"date":"'. $rain_day_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"day","rain").'"}');
+			array_push($result,'{"period":"day","temp":"sun","percent":'. $s .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","sun").'"}');
+			array_push($result,'{"period":"day","temp":"clear","percent":'. $c .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","clear").'"}');
+			array_push($result,'{"period":"day","temp":"rain","percent":'. $t .',"date":"'. $rain_day_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"day","rain").'"}');
 			//night
 			$rain_night_print = "";
 			foreach ($rain_night as $value) {
 				$rain_night_print = $rain_night_print . " " . $value;
 			}
-			array_push($result,'{"period":"night","percent"'. $sn .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","sun").'"}');
-			array_push($result,'{"period":"night","percent"'. $cn .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","clear").'"}');
-			array_push($result,'{"period":"night","percent"'. $tn .',"date":"'. $rain_night_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"night","rain").'"}');
+			array_push($result,'{"period":"night","temp":"clear","percent":'. $cn .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","clear").'"}');
+			array_push($result,'{"period":"night","temp":"rain","percent":'. $tn .',"date":"'. $rain_night_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"night","rain").'"}');
 
 			return json_encode($result);
 		}
