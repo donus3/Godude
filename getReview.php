@@ -178,8 +178,8 @@
             <?php
             for($x=0;$x<4;$x++)
                 echo '<br>';
-            echo "<h1 class='text-center'>$review['topic']</h1>";
-            echo "$review['detail'] <br>";
+            echo "<h1 class='text-center'>".$review['topic']."</h1>";
+            echo $review['detail']."<br>";
             ?><br>
 
         </div>

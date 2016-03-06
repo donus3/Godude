@@ -163,7 +163,7 @@
                                     <div class="overlay-container">
                                         <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo '/images/'.$topic['images'] ?>"
                                              alt=""> <!-- Image here -->
-                                        <a href="getTopic.php?id=<?php echo $topic['_id'] ?>" class="overlay"
+                                        <a href="getReview.php?id=<?php echo $topic['id'] ?>" class="overlay"
                                            data-target="#project-5">
                                             <!-- onclick image will show overlay on image -->
                                             <i class="fa fa-search-plus fa-4x"></i>
@@ -171,7 +171,7 @@
                                         </a>
                                     </div>
                                     <!-- call something from ... -->
-                                    <a href="getReview.php?id=<?php echo $topic['_id']; ?>" class="btn btn-default btn-block"
+                                    <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
                                        data-target="getReview.php">
                                         <?php echo $topic['topic'] ?>
                                     </a>
