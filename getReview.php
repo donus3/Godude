@@ -163,7 +163,7 @@
             for($x=0;$x<6;$x++)
                 echo '<br>';
             ?>
-            <img id="" src="<?php echo '/images/'.$review['images'] ?>" class="img-thumbnail" width="600" height="800">
+            <img id="" src="<?php echo '/images/'.$review['image'] ?>" class="img-thumbnail" width="600" height="800">
         </div>
         <!--------------- Show Weather -------------->
         <div class="col-md-3">
