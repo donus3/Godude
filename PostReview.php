@@ -11,7 +11,7 @@
       <body> 
             <br>
             <table style="width:35%" align="center">     
-                  <form action="PostReview.php" method="post" id="form1" >
+                  <form action="Controller.php" method="post" id="form1" enctype="multipart/form-data">
                   <tr>
                         <td>Image :</td>
 
@@ -38,16 +38,9 @@
                         <td><input type="text" name="tag" size="52"></td>
                   </tr>
                   <td colspan="2" align="center" >
-                        <button  type="submit" form="form1" name="Submit" style="color:black;">Submit</button>
+                        <button  type="submit" form="form1" name="Submit" value="submit" style="color:black;">Submit</button>
                   </td>
                   </form>
-            </table> 
-
-            <?PHP
-                  if (isset($_POST['Submit'])) {  
-                        $control = new Controller;
-                        $control->insertReview();
-                  }    
-            ?>   
+            </table>  
       </body>
 </html>
