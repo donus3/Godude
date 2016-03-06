@@ -112,6 +112,7 @@
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
                                         <li class="active"><a href="Topic.php">Review</a></li>
+                                        <li><a href="PostReview.php">Add Review</a></li>
                                     </ul>
                                 </div>
 
@@ -161,9 +162,9 @@
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-                                        <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo $topic['images'] ?>"
+                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"
                                              alt=""> <!-- Image here -->
-                                        <a href="getTopic.php?id=<?php echo $count; ?>" class="overlay"
+                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"
                                            data-target="#project-5">
                                             <!-- onclick image will show overlay on image -->
                                             <i class="fa fa-search-plus fa-4x"></i>
@@ -171,7 +172,7 @@
                                         </a>
                                     </div>
                                     <!-- call something from ... -->
-                                    <a href="getReview.php?id=<?php echo $count; ?>" class="btn btn-default btn-block"
+                                    <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
                                        data-target="getReview.php">
                                         <?php echo $topic['topic'] ?>
                                     </a>
@@ -181,14 +182,12 @@
                             $count = $count + 1;
                         }
                     }
+
                 ?>
 
-                    <div class="col-sm-6 col-md-3 isotope-item app-development">
-
-                        <i id="add" class="fa fa-plus-circle fa-5x"></i>
-
-
-                    </div>
+<!--                    <div class="col-sm-6 col-md-3 isotope-item app-development">-->
+<!--                        <i id="add" class="fa fa-plus-circle fa-5x"></i>-->
+<!--                    </div>-->
                 </div>
 
 
