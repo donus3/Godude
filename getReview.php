@@ -166,11 +166,60 @@
             <img id="" src="<?php echo '/images/'.$review['image'] ?>" class="img-thumbnail" width="600" height="800">
         </div>
         <!--------------- Show Weather -------------->
-        <div class="col-md-3">
-            <img class="whether" src="images/cloud.png">
+        <div class="row">
+        
+        <!--------------- Show Weather -------------->
+        <?php
+            $allWeather = $controller->getWeather($review['la'], $review['long'], $review['tag']);
+            $weather = json_decode($allWeather);
+            if (is_array($weather) || is_object($weather))
+            {
+                foreach ($weather as $allContent) {
+                $content = json_decode($allContent, true);
+        ?>
+                    <div class="container col-md-offset-1">
+                        <div class="col-md-4">
+                            <img id="" src="<?php echo '/images/'."day.png" ?>" class="icon" width="60"
+                                 height="60">
+                            <h5>Sunny</h5>
+                            <?php echo "Precipitation : " . $content['percent'] . "%" ?><br>
+                            <?php echo "Description : " . $content['description'] ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?php if ($content['period']=="day" && $content['temp'] == "dayclear") { ?>
+                                <img id="" src="<?php echo '/images/'."dayclear.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } else {
+                                ?>
+                                <img id="" src="<?php echo '/images/'."nightclear.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } ?>
+                            <h5>Clear</h5>
+                            <?php echo "Precipitation : " . $content['percent'] . "%" ?><br>
+                            <?php echo "Description : " . $content['description'] ?>
 
-            <h2> 28 C</h2>
-        </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <?php if ($content['period']== "day" && $content['temp'] == "rain") { ?>
+                                <img id="" src="<?php echo '/images/'."dayrain.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } else {
+                                ?>
+                                <img id="" src="<?php echo '/images/'."nightrain.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } ?>
+                            <h5>Rainy</h5>
+                            <?php echo "Precipitation : " . $content['percent'] . "%" ?><br>
+                            <?php echo "Date : " . $content['date'] ?><br>
+                            <?php echo "Description : " . $content['description'] ?><br><br><br>
+                        </div>
+                    </div>
+        <?php
+            }
+        }
+        ?>
+    </div>
     </div>
     <!---------------- Content ------------------>
     <div class="row">
