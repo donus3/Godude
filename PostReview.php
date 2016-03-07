@@ -46,7 +46,22 @@
                 });
             });
     </script>
-
+    <script type="text/javascript" src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+  <script type="text/javascript">
+  tinymce.init({
+    selector: '#myTextarea',
+    theme: 'modern',
+    width: 600,
+    height: 300,
+    plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'save table contextmenu directionality template paste textcolor'
+    ],
+    content_css: 'css/content.css',
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+  });
+  </script>
 </head>
 
 <body class="no-trans">
@@ -158,42 +173,27 @@
             <br>
             <table style="width:50%" align="center">     
                   <form action="Controller.php" method="post" id="form1" enctype="multipart/form-data">
-                  <tr>
-                        <td>Image :<FONT COLOR="#F00">*</FONT></td>
-
-                        <td ><input type="file" name="image" id="fileToUpload" required="true"></td>
-                  </tr>
-                  <tr>
-                        <td>Topic :<FONT COLOR="#F00">*</FONT></td> 
-                        <td><input type="text" name="topic" size="51" required="true" style="color:black;"></td>
-                  </tr>
-                  <tr>
-                        <td>Detail : <FONT COLOR="#F00">*</FONT><br><br><br><br></td>
-                        <td><textarea rows="5" cols="50" name="detail" required="true" style="color:black;"></textarea></td>
-                  </tr>
-                  <tr>
-                        <td>Latitude : <FONT COLOR="#F00">*</FONT></td>
-                        <td><input name="lat" type="text" size="10" required="true" onkeypress="return isNumberKey(event)" style="color:black;"/></td>
-                  </tr>
-                  <tr>
-                        <td>Longitude : <FONT COLOR="#F00">*</FONT></td>
-
-                        <td><input name="long" type="text" size="10" required="true" onkeypress="return isNumberKey(event)" style="color:black;"/></td>
-                  </tr>
-                  <tr>
-                        <td>Tag : <FONT COLOR="#F00">*</FONT></td>
-
-
-                        <td><select name="tag" required="true" onchange="this.form.submit()">
-                              <option value="town" style="color:black;" selected="selected">Town</option>
-                              <option value="forest" style="color:black;">Forest</option>
-                              <option value="mountian" style="color:black;">Mountian</option>
-                              <option value="sea" style="color:black;">Sea</option>                        
-                        </select></td>
-                  </tr>
-                  <td colspan="2" align="center" >
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"> Image :<FONT COLOR="#F00">*</FONT></span>
+                            <input type="file" name="image" id="fileToUpload" required="true" class="form-control">
+                            <span class="input-group-addon" id="basic-addon1"> Topic :<FONT COLOR="#F00">*</FONT></span>
+                            <input type="text" name="topic" size="51" required="true" style="color:black;" class="form-control">
+                            <span class="input-group-addon" id="basic-addon1"> Detail : <FONT COLOR="#F00">*</FONT></span>
+                            <br><br><br><br>
+                            <textarea id="myTextarea"></textarea></textarea>
+                            <span class="input-group-addon" id="basic-addon1">Latitude : <FONT COLOR="#F00">*</FONT></span>
+                            <input class="form-control" name="lat" type="text" size="10" required="true" onkeypress="return isNumberKey(event)" style="color:black;"/>
+                            <span class="input-group-addon" id="basic-addon1">Longitude : <FONT COLOR="#F00">*</FONT></span>
+                            <input class="form-control" name="long" type="text" size="10" required="true" onkeypress="return isNumberKey(event)" style="color:black;"/>
+                           <span class="input-group-addon" id="basic-addon1">Tag : <FONT COLOR="#F00">*</FONT></span>
+                            <select name="tag" required="true" onchange="this.form.submit()">
+                                  <option value="town" style="color:black;" selected="selected">Town</option>
+                                  <option value="forest" style="color:black;">Forest</option>
+                                  <option value="mountian" style="color:black;">Mountian</option>
+                                  <option value="sea" style="color:black;">Sea</option>                        
+                            </select>
+                        </div>
                         <button  type="submit" form="form1" name="submit" style="color:black;">Submit</button>
-                  </td>
                   </form>
             </table> 
                 <!-- portfolio items end -->
