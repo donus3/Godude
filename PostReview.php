@@ -111,8 +111,13 @@
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
+<<<<<<< HEAD
                                         <li class="active"><a href="Topic.php">Review</a></li>
                                         <li><a href="PostReview.php">Add Review</a></li>
+=======
+                                        <li ><a href="Topic.php">Review</a></li>
+                                        <li class="active"><a href="PostReview.php">Add Review</a></li>
+>>>>>>> refs/heads/pr/9
                                     </ul>
                                 </div>
 
