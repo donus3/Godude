@@ -57,7 +57,7 @@
 
 <!-- header start -->
 <!-- ================ -->
-<header class="header fixed clearfix navbar navbar-fixed-top">
+<header class="header fixed clearfix navbar navbar-fixed-top" style="background-color:black;">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -137,7 +137,7 @@
 <!-- ================ -->
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
-    <div class="container">
+    <div class="container" style="padding-top: 5%;padding-bottom: 10%">
         <br><br>
         <h1 class="text-center title" id="review">Review</h1>
         <br>
