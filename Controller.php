@@ -84,16 +84,16 @@
 			foreach ($rain_day as $value) {
 				$rain_day_print = $rain_day_print . " " . $value;
 			}
-			array_push($result,'{"period":"day","temp":"sun","percent":'. $s .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","sun").'"}');
-			array_push($result,'{"period":"day","temp":"clear","percent":'. $c .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","clear").'"}');
-			array_push($result,'{"period":"day","temp":"rain","percent":'. $t .',"date":"'. $rain_day_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"day","rain").'"}');
+			array_push($result,'{"period":"day","temp":"sun","percent":"'. round(($s/($s+$c+$t))*100,2) .'%","date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","sun").'"}');
+			array_push($result,'{"period":"day","temp":"clear","percent":"'. round(($c/($s+$c+$t))*100,2) .'%","date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","clear").'"}');
+			array_push($result,'{"period":"day","temp":"rain","percent":"'. round(($t/($s+$c+$t))*100,2) .'%","date":"'. $rain_day_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"day","rain").'"}');
 			//night
 			$rain_night_print = "";
 			foreach ($rain_night as $value) {
 				$rain_night_print = $rain_night_print . " " . $value;
 			}
-			array_push($result,'{"period":"night","temp":"clear","percent":'. $cn .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","clear").'"}');
-			array_push($result,'{"period":"night","temp":"rain","percent":'. $tn .',"date":"'. $rain_night_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"night","rain").'"}');
+			array_push($result,'{"period":"night","temp":"clear","percent":"'. round(($cn/($cn+$tn))*100,2) .'%","date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","clear").'"}');
+			array_push($result,'{"period":"night","temp":"rain","percent":"'. round(($tn/($cn+$tn))*100,2) .'%","date":"'. $rain_night_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"night","rain").'"}');
 
 			return json_encode($result);
 		}
