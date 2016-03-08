@@ -180,6 +180,10 @@
                         <textarea id="myTextarea"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="inputLocation" style="font-size: 22px"> Location : <FONT COLOR="#F00">*</FONT></label>
+                        <input type="text" name="location" size="51" required="true" style="color:black;" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1" style="font-size: 22px">Tag : <FONT COLOR="#F00">*</FONT></label>
                         <select name="tag" required="true" onchange="this.form.submit()" style="color:black">
                             <option value="town" style="color:black;" selected="selected">Town</option>
@@ -188,7 +192,7 @@
                             <option value="sea" style="color:black;">Sea</option>                        
                         </select>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-default" >Submit</button>
+                    <button type="submit" name="submit" class="btn btn-success" >Submit</button>
                 </form>
                 <!-- portfolio items end -->
             </div>

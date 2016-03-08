@@ -115,17 +115,13 @@
                                         <li><a href="PostReview.php">Add Review</a></li>
                                     </ul>
                                 </div>
-
                             </div>
                         </nav>
                         <!-- navbar end -->
-
                     </div>
                     <!-- main-navigation end -->
-
                 </div>
                 <!-- header-right end -->
-
             </div>
         </div>
     </div>
@@ -138,7 +134,6 @@
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
     <div class="container" style="padding-top: 5%;padding-bottom: 10%">
-        <br><br>
         <h1 class="text-center title" id="review">Review</h1>
         <br>
         <div class="separator"></div>
@@ -147,11 +142,8 @@
 
                 <!-- portfolio items start -->
                 <div class="isotope-container row grid-space-20"> <!-- For 1 container size 20 -->
-                          <br><br><br><br><br>
                     <?php
-                    $count = 0;
                     $controller = new Controller;
-                    //$weather = $controller->getWeater();
                     $allTopic = $controller->getTopic();
                     $arr = json_decode($allTopic);
                     if (is_array($arr) || is_object($arr))
@@ -162,14 +154,9 @@
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"
-                                             alt=""> <!-- Image here -->
-                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"
-                                           data-target="#project-5">
-                                            <!-- onclick image will show overlay on image -->
-                                            <i class="fa fa-search-plus fa-4x"></i>
-                                            <span><?php echo $topic['timestamp'] ?></span> <!-- message in span! -->
-                                        </a>
+                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"> 
+                                        <!-- Image here -->
+                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"></a>
                                     </div>
                                     <!-- call something from ... -->
                                     <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
@@ -179,15 +166,9 @@
                                 </div>
                             </div>
                             <?php
-                            $count = $count + 1;
                         }
                     }
-
                 ?>
-
-<!--                    <div class="col-sm-6 col-md-3 isotope-item app-development">-->
-<!--                        <i id="add" class="fa fa-plus-circle fa-5x"></i>-->
-<!--                    </div>-->
                 </div>
 
 
@@ -198,10 +179,8 @@
 </div>
 <!-- section end -->
 
-
 <!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
-
 <!-- Jquery and Bootstap core js files -->
 <script type="text/javascript" src="plugins/jquery.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>

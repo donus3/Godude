@@ -142,12 +142,20 @@
 			        echo "Sorry, there was an error uploading your file.<br>";
 			    }
 			}
+
 			  $image = $_FILES["image"]["name"];
 			  $topic = $_POST['topic'];
 			  $detail = $_POST['detail'];
 			  $tag = $_POST['tag'];
-			  $lat = $_POST['lat'];
-			  $long = $_POST['long'];
+			  $location = $_POST['location'];
+			  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$location.'&key=AIzaSyDjBCeazLnByvNQlC8nvbXf-p4hm15MaBo');
+			  $obj = json_decode($json);
+			  $results = $obj->{'results'}
+			  $results = $results[0];
+			  $geo = $results->{'geometry'};
+			  $geo = $geo->{'location'};
+			  $lat = $geo->{'lat'};
+			  $long = $geo->{'lng'};
 			  $succ = $models->insertDB($image,$topic,$detail,$tag,$lat,$long);
 			  $succ = json_decode($succ);
 			  if($succ->{'ok'} == 'true'){
