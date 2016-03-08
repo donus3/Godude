@@ -177,7 +177,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputDetail" style="font-size: 22px"> Story : <FONT COLOR="#F00">*</FONT></label>
-                        <textarea id="myTextarea"></textarea>
+                        <textarea id="myTextarea" name="detail"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="inputLocation" style="font-size: 22px"> Location : <FONT COLOR="#F00">*</FONT></label>
