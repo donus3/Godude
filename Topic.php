@@ -57,7 +57,7 @@
 
 <!-- header start -->
 <!-- ================ -->
-<header class="header fixed clearfix navbar navbar-fixed-top">
+<header class="header fixed clearfix navbar navbar-fixed-top" style="background-color:black;">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -111,20 +111,17 @@
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
-                                        <li class="active"><a href="TestAll.php">Review</a></li>
+                                        <li class="active"><a href="Topic.php">Review</a></li>
+                                        <li><a href="PostReview.php">Add Review</a></li>
                                     </ul>
                                 </div>
-
                             </div>
                         </nav>
                         <!-- navbar end -->
-
                     </div>
                     <!-- main-navigation end -->
-
                 </div>
                 <!-- header-right end -->
-
             </div>
         </div>
     </div>
@@ -136,8 +133,7 @@
 <!-- ================ -->
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
-    <div class="container">
-        <br><br>
+    <div class="container" style="padding-top: 5%;padding-bottom: 10%">
         <h1 class="text-center title" id="review">Review</h1>
         <br>
         <div class="separator"></div>
@@ -147,46 +143,32 @@
                 <!-- portfolio items start -->
                 <div class="isotope-container row grid-space-20"> <!-- For 1 container size 20 -->
                     <?php
-                    $count = 0;
                     $controller = new Controller;
-                    $weather = $controller->getWeater();
                     $allTopic = $controller->getTopic();
                     $arr = json_decode($allTopic);
                     if (is_array($arr) || is_object($arr))
                     {
-                        foreach ($arr as $topic) {
+                        foreach ($arr as $eachTopic) {
+                          $topic = json_decode($eachTopic,true);
                           ?>
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-                                        <img name="<?php echo $count ?>" href="getTopic.php" src="<?php echo $topic[1] ?>"
-                                             alt=""> <!-- Image here -->
-                                        <a href="getTopic.php?id=<?php echo $count; ?>" class="overlay"
-                                           data-target="#project-5">
-                                            <!-- onclick image will show overlay on image -->
-                                            <i class="fa fa-search-plus fa-4x"></i>
-                                            <span><?php echo $topic[3] ?></span> <!-- message in span! -->
-                                        </a>
+                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"> 
+                                        <!-- Image here -->
+                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"></a>
                                     </div>
                                     <!-- call something from ... -->
-                                    <a href="getReview.php?id=<?php echo $count; ?>" class="btn btn-default btn-block"
+                                    <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
                                        data-target="getReview.php">
-                                        <?php echo $topic[2] ?>
+                                        <?php echo $topic['topic'] ?>
                                     </a>
                                 </div>
                             </div>
                             <?php
-                            $count = $count + 1;
                         }
                     }
                 ?>
-
-                    <div class="col-sm-6 col-md-3 isotope-item app-development">
-
-                        <i id="add" class="fa fa-plus-circle fa-5x"></i>
-
-
-                    </div>
                 </div>
 
 
@@ -197,10 +179,8 @@
 </div>
 <!-- section end -->
 
-
 <!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
-
 <!-- Jquery and Bootstap core js files -->
 <script type="text/javascript" src="plugins/jquery.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>

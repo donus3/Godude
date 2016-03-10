@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <?php
+<<<<<<< HEAD
 include 'Controller.php';
 $controller = new Controller;
 $id = $_GET['id'];
 $review = $controller->getReview($id);
+=======
+    include 'Controller.php';
+    $controller = new Controller;
+    $id = $_GET['id'];
+    $review = $controller->getReview($id);
+>>>>>>> refs/remotes/origin/master
 ?>
 <!--[if IE 9]>
 <html lang="en" class="ie9"> <![endif]-->
@@ -75,7 +82,11 @@ $review = $controller->getReview($id);
 <!-- scrollToTop -->
 <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
 <!-- header start -->
+<<<<<<< HEAD
 <header class="header fixed clearfix navbar navbar-fixed-top" style="background-color: black">
+=======
+<header class="header fixed clearfix navbar navbar-fixed-top">
+>>>>>>> refs/remotes/origin/master
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -146,6 +157,7 @@ $review = $controller->getReview($id);
 </header>
 <!-- header end -->
 <div class="container-fluid bg-image-1 ">
+<<<<<<< HEAD
 <br><br><br><br><br><br><br>
     <div class="row">
         <div class="col-md-10 col-lg-offset-1 " style="background-color:#FFFFFF;" >
@@ -165,6 +177,73 @@ $review = $controller->getReview($id);
                 <img align="left" src="<?php echo $review['images'] ?>" class="img-thumbnail" width="200"  height="420">
             </div>
             <br><br><br><br><br>
+=======
+    <!-------------- Show Image -------------->
+    <div class="row">
+        <div id="" class="col-md-6 col-md-offset-3">
+            <?php
+            for($x=0;$x<6;$x++)
+                echo '<br>';
+            ?>
+            <img id="" src="<?php echo '/images/'.$review['image'] ?>" class="img-thumbnail" width="600" height="800">
+        </div>
+        <!--------------- Show Weather -------------->
+        <div class="row">
+        
+        <!--------------- Show Weather -------------->
+        <?php
+            $allWeather = $controller->getWeather($review['la'], $review['long'], $review['tag']);
+            $weather = json_decode($allWeather);
+            if (is_array($weather) || is_object($weather))
+            {
+                foreach ($weather as $allContent) {
+                $content = json_decode($allContent, true);
+        ?>
+                    <div class="container col-md-offset-1">
+                        <div class="col-md-4">
+                            <img id="" src="<?php echo '/images/'."day.png" ?>" class="icon" width="60"
+                                 height="60">
+                            <h5>Sunny</h5>
+                            <?php echo "Precipitation : " . $content['percent'] . "%" ?><br>
+                            <?php echo "Description : " . $content['description'] ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?php if ($content['period']=="day" && $content['temp'] == "dayclear") { ?>
+                                <img id="" src="<?php echo '/images/'."dayclear.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } else {
+                                ?>
+                                <img id="" src="<?php echo '/images/'."nightclear.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } ?>
+                            <h5>Clear</h5>
+                            <?php echo "Precipitation : " . $content['percent'] . "%" ?><br>
+                            <?php echo "Description : " . $content['description'] ?>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <?php if ($content['period']== "day" && $content['temp'] == "rain") { ?>
+                                <img id="" src="<?php echo '/images/'."dayrain.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } else {
+                                ?>
+                                <img id="" src="<?php echo '/images/'."nightrain.png" ?>" class="icon" width="60"
+                                     height="60">
+                            <?php } ?>
+                            <h5>Rainy</h5>
+                            <?php echo "Precipitation : " . $content['percent'] . "%" ?><br>
+                            <?php echo "Date : " . $content['date'] ?><br>
+                            <?php echo "Description : " . $content['description'] ?><br><br><br>
+                        </div>
+                    </div>
+        <?php
+            }
+        }
+        ?>
+    </div>
+    </div>
+>>>>>>> refs/remotes/origin/master
     <!---------------- Content ------------------>
             <?php
             echo $review['detail'] . "<br>";
@@ -174,6 +253,7 @@ $review = $controller->getReview($id);
             <?php
                 for ($x = 0; $x < 20; $x++)
                 echo '<br>';
+<<<<<<< HEAD
                 $allWeather = $controller->getWeather($review['la'], $review['long'], $review['tag']);
                 $weather = json_decode($allWeather);
                 if (is_array($weather) || is_object($weather)) {
@@ -264,6 +344,13 @@ $review = $controller->getReview($id);
             ?>
             </div>
          </div>
+=======
+            echo "<h1 class='text-center'>".$review['topic']."</h1>";
+            echo $review['detail']."<br>";
+            ?><br>
+
+        </div>
+>>>>>>> refs/remotes/origin/master
     </div>
     <br><br><br><br>
 </div>
