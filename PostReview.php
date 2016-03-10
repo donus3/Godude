@@ -151,7 +151,7 @@
 <!-- ================ -->
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
-    <div class="container" style="padding-top: 5%;padding-bottom: 10%">
+    <div class="container" style="padding-top: 5%;padding-bottom: 5%">
         <h1 class="text-center title" id="review">Write Your Story</h1>
         <br>
         <div class="separator"></div>
@@ -165,15 +165,16 @@
                             return false;
                         return true;
                     }
-                </script>  
+                </script> 
+                <span> suggest to upload image in google Drive</span> 
                 <form action="Controller.php" method="post" id="form1" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="inputImage" style="font-size: 22px"> Image :<FONT COLOR="#F00">*</FONT></label>
-                        <input type="file" name="image" id="fileToUpload" required="true">
+                        <label for="inputImage" style="font-size: 22px"> Image Cover :<FONT COLOR="#F00">*</FONT></label>
+                        <input type="text" name="image" size="51" required="true" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="inputTopic" style="font-size: 22px"> Topic :<FONT COLOR="#F00">*</FONT></label>
-                        <input type="text" name="topic" size="51" required="true" style="color:black;" class="form-control">
+                        <input type="text" name="topic" size="51" required="true" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="inputDetail" style="font-size: 22px"> Story : <FONT COLOR="#F00">*</FONT></label>
@@ -181,7 +182,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputLocation" style="font-size: 22px"> Location : <FONT COLOR="#F00">*</FONT></label>
-                        <input type="text" name="location" size="51" required="true" style="color:black;" class="form-control">
+                        <input type="text" name="location" size="51" required="true" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1" style="font-size: 22px">Tag : <FONT COLOR="#F00">*</FONT></label>

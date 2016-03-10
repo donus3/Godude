@@ -154,7 +154,7 @@
                             <div class="col-sm-6 col-md-3 isotope-item app-development">
                                 <div class="image-box">
                                     <div class="overlay-container">
-                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="images/<?php echo $topic['images'] ?>"> 
+                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="<?php echo $topic['images'] ?>"> 
                                         <!-- Image here -->
                                         <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"></a>
                                     </div>

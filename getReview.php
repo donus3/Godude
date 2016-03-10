@@ -146,126 +146,139 @@
 </header>
 <!-- header end -->
 <div class="container-fluid bg-image-1 ">
-<br><br><br><br><br><br><br>
-    <div class="row">
-        <div class="col-md-10 col-lg-offset-1 " style="background-color:#FFFFFF;" >
-
-            <div id="" class="col-md-6 col-md-offset-3">
+    <div class="col-md-10 col-lg-offset-1 " style="background-color:#FFFFFF;" >
+	    <div class="col-md-6 col-md-offset-3" style="padding-top: 10%;padding-bottom: 3%">
 
     <!-------------- Show Topic -------------->
-
             <?php
-                for ($x = 0; $x < 6; $x++)
-                    echo '<br>';
-
                 echo "<h1 class='text-center'>" . $review['topic'] . "</h1>";
             ?>
     <!-------------- Show Image -------------->
-
-                <img align="left" src="<?php echo $review['images'] ?>" class="img-thumbnail" width="200"  height="420">
+            <div>
+            	<img src="<?php echo $review['image']; ?>" class="img-thumbnail">
             </div>
-            <br><br><br><br><br>
     <!---------------- Content ------------------>
-            <?php
-            echo $review['detail'] . "<br>";
-            ?><br>
+	        <div style="padding-top: 5%">
+	            <?php
+	            echo $review['detail'] . "<br>";
+	            ?>
+	        </div>
     <!--------------- Show Weather -------------->
-        <div class="container col-md-offset-1">
-            <?php
-                for ($x = 0; $x < 20; $x++)
-                echo '<br>';
-                $allWeather = $controller->getWeather($review['la'], $review['long'], $review['tag']);
-                $weather = json_decode($allWeather);
-                if (is_array($weather) || is_object($weather)) {
-                    foreach ($weather as $allContent) {
-                        $content = json_decode($allContent, true);
-            ?>
-            <div class="col-md-2 text-center">
-            <?php
-                if ($content['period'] == 'day') {
-                    if ($content['temp'] == 'sun') {
-            ?>
-                        <img src="images/day.png" width="60" height="60">
-                        <h5>SUNNY</h5>
-                        <?php echo $content['percent'] ?><br>
-            <?php
-                    } elseif ($content['temp'] == 'clear') {
-            ?>
-                        <img src="images/dayclear.png" width="60" height="60">
-                        <h5>CLEAR</h5>
-                        <?php echo $content['percent'] ?><br>
-            <?php
-                    } else {
-            ?>
-                        <img src="images/dayrain.png" width="60" height="60">
-                        <h5>RAINY</h5>
-                        <?php echo $content['percent'] ?><br>
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Rainy Day<span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-            <?php
-                            $i = 0;
-                            $j = 0;
-                            $arr = array();
-                            for ($i = 0; $i < strlen($content['date']); $i += 25) {
-                                $time = substr($content['date'], $i + 1, 24);
-                                $unixTime = date("U", strtotime($time));
-                                $date = gmdate("d/m/y", $unixTime);
-            ?>
-                                <li><a href="#"><?php echo $date ?></a></li>
-            <?php
-                            } 
-            ?>
-                            </ul>
-                        </div>
-            <?php   }
-                }else {
-                    if ($content['temp'] == 'clear') {
-            ?>
-                        <img src="images/nightclear.png" width="60" height="60">
-                        <h5>CLEAR NIGHT</h5>
-                        <?php echo $content['percent'] ?><br>
-            <?php
-                    } else {
-            ?>
-                        <img src="images/nightrain.png" width="60" height="60">
-                        <h5>RAINY</h5>
-                        <?php echo $content['percent'] ?><br>
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Rainy Day
-                           <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-            <?php
-                            $i = 0;
-                            $j = 0;
-                            $arr = array();
-                            for ($i = 0; $i < strlen($content['date']); $i += 25) {
-                                $time = substr($content['date'], $i + 1, 24);
-                                $unixTime = date("U", strtotime($time));
-                                $date = gmdate("d/m/y", $unixTime);
-            ?>
-                                <li><a href="#"><?php echo $date ?></a></li>
-            <?php
-                            }
-            ?>
-                            </ul>
-                        </div>
-            <?php
-                        }
-                    }
-                    for ($x = 0; $x < 8; $x++) echo '<br>';
-            ?>
-                </div>
-            <?php
+        
+    	<?php
+            $allWeather = $controller->getWeather($review['la'], $review['long'], $review['tag']);
+		    $weather = json_decode($allWeather);
+            $arrWeather = array();
+            if (is_array($weather) || is_object($weather)) {
+       	        foreach ($weather as $allContent) {
+                    $content = json_decode($allContent, true);
+                    array_push($arrWeather, $content);
                 }
             }
+        ?>
+
+    	<div class="container col-md-offset-1" style="padding-bottom: 10%">
+    		<h3> Trip Suggestions Average winthin 10 Days</h3>
+
+    		<h4> @Day </h4>
+    			<p> 555</p>
+    		<h4> @Night </h4>
+    			<p>555 </p>
+    	</div>
+		<h3> Weather Average winthin 10 Days </h3>        
+        <div class="container col-md-offset-1">
+        	<h4> Day Waether </h4>
+            <?php
+            foreach ($arrWeather as $content) {
+                if ($content['period'] == 'day') {
+                	echo '<div class="col-md-2 text-center">';
+                    if ($content['temp'] == 'sun') {
             ?>
+                    <img src="images/day.png" width="60" height="60">
+                    <h5>SUNNY</h5>
+                    <?php echo $content['percent'] ?><br>
+            <?php
+                } elseif ($content['temp'] == 'clear') {
+            ?>
+                    <img src="images/dayclear.png" width="60" height="60">
+                    <h5>CLEAR</h5>
+                    <?php echo $content['percent'] ?><br>
+            <?php
+                } else {
+            ?>
+                    <img src="images/dayrain.png" width="60" height="60">
+                    <h5>RAINY</h5>
+                    <?php echo $content['percent'] ?><br>
+                    <div class="dropdown">
+        	            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            Rainy Day<span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+            <?php
+               	$i = 0;
+                $j = 0;
+	            $arr = array();
+                for ($i = 0; $i < strlen($content['date']); $i += 25) {
+                    $time = substr($content['date'], $i + 1, 24);
+                    $unixTime = date("U", strtotime($time));
+                    $date = gmdate("d/m/y", $unixTime);
+            ?>
+                    <li><a href="#"><?php echo $date ?></a></li>
+            <?php
+                } 
+            ?>
+                        </ul>
+                    </div>
+            <?php   }
+            		echo "</div>";
+                }
+            }
+            	echo '</div><div class="container col-md-offset-1">';
+            	echo '<h4>Night Weather</h4>';
+     			foreach ($arrWeather as $content) {
+     				if ($content['period'] == 'night') {
+     					echo '<div class="col-md-2 text-center">';
+	                    if ($content['temp'] == 'clear') {
+	            ?>	
+	                    <img src="images/nightclear.png" width="60" height="60">
+		                <h5>CLEAR NIGHT</h5>
+	                    <?php echo $content['percent'] ?><br>
+	            <?php
+	                } else {
+	            ?>
+	                    <img src="images/nightrain.png" width="60" height="60">
+	                    <h5>RAINY</h5>
+	                    <?php echo $content['percent'] ?><br>
+	                    <div class="dropdown">
+	                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+	                            Rainy Day
+	                        <span class="caret"></span></button>
+	                        <ul class="dropdown-menu">
+	            <?php
+	                            $i = 0;
+	                            $j = 0;
+	                            $arr = array();
+	                            for ($i = 0; $i < strlen($content['date']); $i += 25) {
+	                                $time = substr($content['date'], $i + 1, 24);
+	                                $unixTime = date("U", strtotime($time));
+	                                $date = gmdate("d/m/y", $unixTime);
+	            ?>
+	                                <li><a href="#"><?php echo $date ?></a></li>
+	            <?php
+	                            }
+	            ?>
+	                            </ul>
+	                        </div>
+	            <?php
+	                        }
+	                        echo '</div>';
+	                    }
+	                }
+	            ?>
+                </div>
             </div>
          </div>
+         </div>
     </div>
-    <br><br><br><br>
 </div>
 <!-- JavaScript files placed at the end of the document so the pages load faster
 <!-- Jquery and Bootstap core js files -->
