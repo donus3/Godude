@@ -188,25 +188,26 @@ $review = $controller->getReview($id);
             $arrWeather = array();
             $descriptionD = "";
             $descriptionN = "";
-            $max = 0;
+            $maxD = 0;
+            $maxN = 0;
             if (is_array($weather) || is_object($weather)) {
                 foreach ($weather as $allContent) {
                     $content = json_decode($allContent, true);
                     if((int)$content['percent'] > $max && $content['period'] == 'day'){
-                    	$max = (int)$content['percent'];
+                    	$maxD = (int)$content['percent'];
                     	$descriptionD = $content['description'];
                     }
-                    elseif((int)$content['percent'] > $max && $content['period'] == 'day'){
-                    	$max = (int)$content['percent'];
+                    elseif((int)$content['percent'] > $max && $content['period'] == 'night'){
+                    	$maxN = (int)$content['percent'];
                     	$descriptionN = $content['description'];
                     }
                     array_push($arrWeather, $content);
                 }
             }
             ?>
-            $
+            
             <div class="container" style="padding-bottom: 10%">
-                <h3> Trip Suggestions Average winthin 10 Days</h3>
+                <h3> Trip Suggestions Average within 10 Days</h3>
 
                 <h4> @Day </h4>
                 <p> <?php echo $descriptionD; ?></p>
@@ -214,7 +215,7 @@ $review = $controller->getReview($id);
                 <p> <?php echo $descriptionN; ?> </p>
             </div>
 
-            <h3> Weather Average winthin 10 Days </h3>
+            <h3> Weather Average within 10 Days </h3>
             <div class="container">
                 <h4> Day Weather </h4>
                 <?php
