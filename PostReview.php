@@ -51,8 +51,7 @@
   tinymce.init({
     selector: '#myTextarea',
     theme: 'modern',
-    width: 1150,
-    height: 300,
+    height: 400,
     plugins: [
       'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
       'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
@@ -178,7 +177,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputDetail" style="font-size: 22px"> Story : <FONT COLOR="#F00">*</FONT></label>
-                        <textarea id="myTextarea" name="detail"></textarea>
+                        <textarea class="form-control" id="myTextarea" name="detail"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="inputLocation" style="font-size: 22px"> Location : <FONT COLOR="#F00">*</FONT></label>
@@ -201,8 +200,11 @@
     </div>
 </div>
 <!-- section end -->
+<?php $s = "20%" ;
+    if((int)$s == 20)
+        echo '3333';
 
-
+?>
 <!-- JavaScript files placed at the end of the document so the pages load faster
             ================================================== -->
 
