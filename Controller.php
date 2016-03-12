@@ -1,4 +1,4 @@
-<?php
+	<?php
 	include 'ReviewModel.php';
 	include 'WeatherModel.php';
 	if(isset($_POST['submit'])){
@@ -49,7 +49,6 @@
 			$s = 0;
 			$c = 0;
 			$t = 0;
-			$sn = 0;
 			$cn = 0;
 			$tn = 0;
 			// count stat of forcast each day
@@ -69,9 +68,7 @@
 					}
 				 }
 				 if($night != NULL){
-					 if(strpos($night->{'shortcast'}, 'sun' ) !== false)
-					 		$sn++;
-					 else if(strpos($night->{'shortcast'}, 'thunderstorm' ) !== false){
+					if(strpos($night->{'shortcast'}, 'thunderstorm' ) !== false || strpos($night->{'shortcast'}, 'rain' ) !== false){
 						 //add date
 						 	array_push($rain_night,$night->{'fcst_valid_local'});
 					 		$tn++;
@@ -87,17 +84,16 @@
 			foreach ($rain_day as $value) {
 				$rain_day_print = $rain_day_print . " " . $value;
 			}
-			array_push($result,'{"period":"day","percent"'. $s .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","sun").'"}');
-			array_push($result,'{"period":"day","percent"'. $c .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","clear").'"}');
-			array_push($result,'{"period":"day","percent"'. $t .',"date":"'. $rain_day_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"day","rain").'"}');
+			array_push($result,'{"period":"day","temp":"sun","percent":"'. round(($s/($s+$c+$t))*100,2) .'%","date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","sun").'"}');
+			array_push($result,'{"period":"day","temp":"clear","percent":"'. round(($c/($s+$c+$t))*100,2) .'%","date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"day","clear").'"}');
+			array_push($result,'{"period":"day","temp":"rain","percent":"'. round(($t/($s+$c+$t))*100,2) .'%","date":"'. $rain_day_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"day","rain").'"}');
 			//night
 			$rain_night_print = "";
 			foreach ($rain_night as $value) {
 				$rain_night_print = $rain_night_print . " " . $value;
 			}
-			array_push($result,'{"period":"night","percent"'. $sn .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","sun").'"}');
-			array_push($result,'{"period":"night","percent"'. $cn .',"date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","clear").'"}');
-			array_push($result,'{"period":"night","percent"'. $tn .',"date":"'. $rain_night_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"night","rain").'"}');
+			array_push($result,'{"period":"night","temp":"clear","percent":"'. round(($cn/($cn+$tn))*100,2) .'%","date":null,"description" : "' . $weatherModel->getWeatherByKeys($tag,"night","clear").'"}');
+			array_push($result,'{"period":"night","temp":"rain","percent":"'. round(($tn/($cn+$tn))*100,2) .'%","date":"'. $rain_night_print .'","description" : "' . $weatherModel->getWeatherByKeys($tag,"night","rain").'"}');
 
 			return json_encode($result);
 		}
@@ -108,9 +104,26 @@
 			  $topic = $_POST['topic'];
 			  $detail = $_POST['detail'];
 			  $tag = $_POST['tag'];
-			  $lat = $_POST['lat'];
-			  $long = $_POST['long'];
-			  $models->insertDB($image,$topic,$detail,$tag,$lat,$long);
+			  $location = $_POST['location'];
+			  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$location.'&key=AIzaSyDjBCeazLnByvNQlC8nvbXf-p4hm15MaBo');
+			  $obj = json_decode($json);
+			  $results = $obj->{'results'};
+			  $results = $results[0];
+			  $geo = $results->{'geometry'};
+			  $geo = $geo->{'location'};
+			  $lat = $geo->{'lat'};
+			  $long = $geo->{'lng'};
+			  $succ = $models->insertDB($image,$topic,$detail,$tag,$lat,$long);
+			  $succ = json_decode($succ);
+			  //var_dump($detail);
+			  if($succ->{'ok'} == 'true'){
+			  	header( "location: Topic.php" );
+ 				exit(0);
+			  }
+			  else{
+			  	echo "Submit error pls try again";
+			  	echo '<br><a href="PostReview.php"> <button> try again </button> </a>';
+			  }
 		}
 	}
 ?>
