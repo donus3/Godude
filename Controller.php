@@ -32,11 +32,7 @@
 				//make array of all topic
 				foreach($topics['rows'] as $topic) {
 					$field = $topic['doc'];
-<<<<<<< HEAD
 					array_push($result, '{ "id":"' . $field['_id'] . '","images":"' . $field['image'] . '","topic":"' . $field['topic'] . '","timestamp":"' . $field['timestamp'] . '","tag":"' . $field['tag'] . '"}' );
-=======
-					array_push($result, '{ "id":"' . $field['_id'] . '","images":"' . $field['image'] . '","topic":"' . $field['topic'] . '","timestamp":"' . $field['timestamp'] . '"}' );
->>>>>>> refs/remotes/origin/master
 				}
 				return json_encode($result);
 			}
