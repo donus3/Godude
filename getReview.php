@@ -92,7 +92,7 @@ $review = $controller->getReview($id);
 <!-- scrollToTop -->
 <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
 <!-- header start -->
-<header class="header fixed clearfix navbar navbar-fixed-top">
+<header class="header fixed clearfix navbar navbar-fixed-top" style="background-color:black;">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
