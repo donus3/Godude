@@ -188,7 +188,7 @@
                         <select name="tag" required="true" onchange="this.form.submit()" style="color:black">
                             <option value="town" style="color:black;" selected="selected">Town</option>
                             <option value="forest" style="color:black;">Forest</option>
-                            <option value="mountian" style="color:black;">Mountian</option>
+                            <option value="mountain" style="color:black;">Mountain</option>
                             <option value="sea" style="color:black;">Sea</option>                        
                         </select>
                     </div>
