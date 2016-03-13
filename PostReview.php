@@ -24,9 +24,6 @@
         rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
     <!-- Font Awesome CSS -->
     <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
 
@@ -35,6 +32,9 @@
 
     <!-- Worthy core CSS file -->
     <link href="css/style.css" rel="stylesheet">
+
+        <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom css -->
     <link href="css/custom.css" rel="stylesheet">
@@ -46,7 +46,21 @@
                 });
             });
     </script>
-
+    <script type="text/javascript" src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script type="text/javascript">
+  tinymce.init({
+    selector: '#myTextarea',
+    theme: 'modern',
+    height: 400,
+    plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'save table contextmenu directionality template paste textcolor'
+    ],
+    content_css: 'css/content.css',
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+  });
+  </script>
 </head>
 
 <body class="no-trans">
@@ -57,7 +71,7 @@
 
 <!-- header start -->
 <!-- ================ -->
-<header class="header fixed clearfix navbar navbar-fixed-top">
+<div class="header fixed clearfix navbar navbar-fixed-top" style="background-color:black;">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -111,8 +125,8 @@
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="index.html">Home</a></li>
-                                        <li class="active"><a href="Topic.php">Review</a></li>
-                                        <li><a href="PostReview.php">Add Review</a></li>
+                                        <li ><a href="Topic.php">Review</a></li>
+                                        <li class="active"><a href="PostReview.php">Add Review</a></li>
                                     </ul>
                                 </div>
 
@@ -129,85 +143,68 @@
             </div>
         </div>
     </div>
-</header>
+</div>
 <!-- header end -->
-
 
 <!-- section start -->
 <!-- ================ -->
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
-    <div class="container">
-        <br><br>
-        <h1 class="text-center title" id="review">Post Review</h1>
+    <div class="container" style="padding-top: 5%;padding-bottom: 5%">
+        <h1 class="text-center title" id="review">Write Your Story</h1>
         <br>
         <div class="separator"></div>
         <div class="row object-non-visible" data-animation-effect="fadeIn">
             <div class="col-md-12">
-
                 <!-- portfolio items start -->
                 <script>
-      function isNumberKey(evt){
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && charCode != 46 &&(charCode < 48 || charCode > 57))
-                  return false;
-            return true;
-      }
-      </script>
-
-            <br>
-            <table style="width:50%" align="center">     
-                  <form action="Controller.php" method="post" id="form1" enctype="multipart/form-data">
-                  <tr>
-                        <td>Image :<FONT COLOR="#F00">*</FONT></td>
-
-                        <td ><input type="file" name="image" id="fileToUpload" required="true"></td>
-                  </tr>
-                  <tr>
-                        <td>Topic :<FONT COLOR="#F00">*</FONT></td> 
-                        <td><input type="text" name="topic" size="51" required="true" style="color:black;"></td>
-                  </tr>
-                  <tr>
-                        <td>Detail : <FONT COLOR="#F00">*</FONT><br><br><br><br></td>
-                        <td><textarea rows="5" cols="50" name="detail" required="true" style="color:black;"></textarea></td>
-                  </tr>
-                  <tr>
-                        <td>Latitude : <FONT COLOR="#F00">*</FONT></td>
-                        <td><input name="lat" type="text" size="10" required="true" onkeypress="return isNumberKey(event)" style="color:black;"/></td>
-                  </tr>
-                  <tr>
-                        <td>Longitude : <FONT COLOR="#F00">*</FONT></td>
-
-                        <td><input name="long" type="text" size="10" required="true" onkeypress="return isNumberKey(event)" style="color:black;"/></td>
-                  </tr>
-                  <tr>
-                        <td>Tag : <FONT COLOR="#F00">*</FONT></td>
-
-
-                        <td><select name="tag" required="true" onchange="this.form.submit()">
-                              <option value="Thailand">Thailand</option>
-                              <option value="Europe">Europe</option>
-                              <option value="US">US</option>
-                              <option value="Africa">Africa</option>
-                              <option value="Australia">Australia</option>
-                              <option value="Asia">Asia</option>                        
-                        </select></td>
-                  </tr>
-                  <td colspan="2" align="center" >
-                        <button  type="submit" form="form1" name="submit" style="color:black;">Submit</button>
-                  </td>
-                  </form>
-            </table>  
-
-
+                  function isNumberKey(evt){
+                        var charCode = (evt.which) ? evt.which : event.keyCode
+                        if (charCode > 31 && charCode != 46 &&(charCode < 48 || charCode > 57))
+                            return false;
+                        return true;
+                    }
+                </script> 
+                <span> suggest to upload image in google Drive</span> 
+                <form action="Controller.php" method="post" id="form1" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="inputImage" style="font-size: 22px"> Image Cover Url:<FONT COLOR="#F00">*</FONT></label>
+                        <input type="text" name="image" size="51" placeholder="https://url" required="true" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTopic" style="font-size: 22px"> Topic :<FONT COLOR="#F00">*</FONT></label>
+                        <input type="text" name="topic" placeholder="Topic" size="51" required="true" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDetail" style="font-size: 22px"> Story : <FONT COLOR="#F00">*</FONT></label>
+                        <textarea class="form-control" id="myTextarea" name="detail"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLocation" style="font-size: 22px"> Location : <FONT COLOR="#F00">*</FONT></label>
+                        <input type="text" name="location" placeholder="เกาะล้าน ภูกระดึง" size="51" required="true" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" style="font-size: 22px">Tag : <FONT COLOR="#F00">*</FONT></label>
+                        <select name="tag" required="true" onchange="this.form.submit()" style="color:black">
+                            <option value="town" style="color:black;" selected="selected">Town</option>
+                            <option value="forest" style="color:black;">Forest</option>
+                            <option value="mountian" style="color:black;">Mountian</option>
+                            <option value="sea" style="color:black;">Sea</option>                        
+                        </select>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-success" >Submit</button>
+                </form>
                 <!-- portfolio items end -->
             </div>
         </div>
     </div>
 </div>
 <!-- section end -->
+<?php $s = "20%" ;
+    if((int)$s == 20)
+        echo '3333';
 
-
+?>
 <!-- JavaScript files placed at the end of the document so the pages load faster
             ================================================== -->
 
@@ -235,4 +232,3 @@
 
 </body>
 </html>
-

@@ -15,10 +15,6 @@
     <!-- Mobile Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="css/bootstrap-toggle.css" rel="stylesheet">
-    
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico">
 
@@ -42,11 +38,6 @@
 
     <!-- Custom css -->
     <link href="css/custom.css" rel="stylesheet">
-
-    <link rel="canonical" href="http://www.bootstraptoggle.com">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css" rel="stylesheet" >
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
         $(document).ready(function () {
             $('#add').click(function () {
@@ -55,8 +46,6 @@
                 });
             });
     </script>
-
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 </head>
 
@@ -145,14 +134,6 @@
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
     <div class="container" style="padding-top: 5%;padding-bottom: 10%">
-
-    <!-- ==Switch button here!!!== -->
-        <div align="right">
-            <form>
-                <input type="checkbox" checked data-toggle="toggle" data-on="Recently" data-off="Tag" data-onstyle="primary" data-offstyle="info" onchange="getVote(this.checked)" size="mini">
-            </form>
-        </div>
-        
         <h1 class="text-center title" id="review">Review</h1>
         <br>
         <div class="separator"></div>
@@ -161,34 +142,37 @@
 
                 <!-- portfolio items start -->
                 <div class="isotope-container row grid-space-20"> <!-- For 1 container size 20 -->
-                    <div id="poll">
-<?php
-                        $controller = new Controller;
-                        $allTopic = $controller->getTopic();
-                        $arr = json_decode($allTopic);
-                        if (is_array($arr) || is_object($arr))
-                        {
-                            foreach ($arr as $eachTopic) {
-                                $topic = json_decode($eachTopic,true);
-
-?>  
-                                <div class="col-sm-6 col-md-3 isotope-item app-development">
-                                    <div class="image-box">
-                                        <div class="overlay-container">
-                                            <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="<?php echo $topic['images'] ?>"> 
-                                            <!-- Image here -->
-                                            <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"></a>
-                                        </div>
-                                        <!-- call something from ... -->
-                                        <a style="color: black" href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block" data-target="getReview.php" ><?php echo $topic['topic'] ?></a>
+                    <?php
+                    $controller = new Controller;
+                    $allTopic = $controller->getTopic();
+                    $arr = json_decode($allTopic);
+                    if (is_array($arr) || is_object($arr))
+                    {
+                        foreach ($arr as $eachTopic) {
+                          $topic = json_decode($eachTopic,true);
+                          ?>
+                            <div class="col-sm-6 col-md-3 isotope-item app-development">
+                                <div class="image-box">
+                                    <div class="overlay-container">
+                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="<?php echo $topic['images'] ?>"> 
+                                        <!-- Image here -->
+                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"></a>
                                     </div>
+                                    <!-- call something from ... -->
+                                    <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
+                                       data-target="getReview.php">
+                                        <?php echo $topic['topic'] ?>
+                                    </a>
                                 </div>
-<?php
-                            }
+                            </div>
+                            <?php
                         }
- ?> 
-                    </div>
+                    }
+                ?>
                 </div>
+
+
+                <!-- portfolio items end -->
             </div>
         </div>
     </div>
@@ -218,27 +202,6 @@
 
 <!-- Custom Scripts -->
 <script type="text/javascript" src="js/custom.js"></script>
-
-<!-- Switch Button -->
-<script src="js/bootstrap-toggle.js"></script>
-
-<script>
-function getVote(bool) {
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } else {  // code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      document.getElementById("poll").innerHTML=xmlhttp.responseText;
-    }
-  }
-  xmlhttp.open("GET","TopicScript.php?vote="+bool,true);
-  xmlhttp.send();
-}
-</script>
 
 </body>
 </html>
