@@ -134,17 +134,12 @@
 <div class="section translucent-bg bg-image-2 pb-clear">
     <!--<div class="section">-->
     <div class="container" style="padding-top: 5%;padding-bottom: 10%">
-<<<<<<< HEAD
-
     <!-- ==Switch button here!!!== -->
         <div align="right">
             <form>
                 <input type="checkbox" checked data-toggle="toggle" data-on="Normal" data-off="Tag" data-onstyle="primary" data-offstyle="info" onchange="getVote(this.checked)" size="mini">
             </form>
         </div>
-        
-=======
->>>>>>> refs/remotes/origin/master
         <h1 class="text-center title" id="review">Review</h1>
         <br>
         <div class="separator"></div>
@@ -154,7 +149,6 @@
                 <!-- portfolio items start -->
             <div id="poll">
                 <div class="isotope-container row grid-space-20"> <!-- For 1 container size 20 -->
-<<<<<<< HEAD
 <?php
                         $controller = new Controller;
                         $allTopic = $controller->getTopic();
@@ -174,23 +168,6 @@
                                         </div>
                                         <!-- call something from ... -->
                                         <a style="color: black" href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block" data-target="getReview.php" ><?php echo $topic['topic'] ?></a>
-=======
-                    <?php
-                    $controller = new Controller;
-                    $allTopic = $controller->getTopic();
-                    $arr = json_decode($allTopic);
-                    if (is_array($arr) || is_object($arr))
-                    {
-                        foreach ($arr as $eachTopic) {
-                          $topic = json_decode($eachTopic,true);
-                          ?>
-                            <div class="col-sm-6 col-md-3 isotope-item app-development">
-                                <div class="image-box">
-                                    <div class="overlay-container">
-                                        <img name="<?php echo $topic['id'] ?>" href="getReview.php" src="<?php echo $topic['images'] ?>"> 
-                                        <!-- Image here -->
-                                        <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="overlay"></a>
->>>>>>> refs/remotes/origin/master
                                     </div>
                                     <!-- call something from ... -->
                                     <a href="getReview.php?id=<?php echo $topic['id']; ?>" class="btn btn-default btn-block"
